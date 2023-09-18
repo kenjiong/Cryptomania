@@ -4,7 +4,7 @@ export default function AllTeams({ teams }) {
   return (
     <>
       {teams.map((team) => (
-        <div key={team.id}>
+        <div key={team.team_id}>
           <TeamCard team={team} />
         </div>
       ))}

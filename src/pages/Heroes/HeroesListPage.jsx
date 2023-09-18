@@ -1,9 +1,9 @@
 import AllHeroes from "../../components/Heroes/AllHeroes";
 
-export default function HeroesListPage() {
+export default function HeroesListPage({heroes}) {
   return (
     <div>
-      <AllHeroes />
+      <AllHeroes heroes={heroes} />
     </div>
   );
 }

@@ -1,9 +1,9 @@
-import PlayerInfo from "../../components/Players/PlayerInfo";
+// import PlayerInfo from "../../components/Players/PlayerInfo";
 
-export default function PlayerPage() {
-    return (
-      <div>
-        <PlayerInfo />
-      </div>
-    );
-  }
+// export default function PlayerPage() {
+//     return (
+//       <div>
+//         <PlayerInfo />
+//       </div>
+//     );
+//   }

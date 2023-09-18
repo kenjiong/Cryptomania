@@ -8,7 +8,7 @@ export default function TeamCard({ team }) {
           <img src={`${team.logo_url}`} alt={`${team.name} logo`} />
         </p>
         <p>
-          <Link to={`/teams/${team.id}`}>{team.name}</Link>
+          <Link to={`/teams/${team.team_id}`}>{team.name}</Link>
         </p>
       </div>
     </>

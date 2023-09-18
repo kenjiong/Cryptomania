@@ -1,42 +1,60 @@
 import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 
-function useFetchHoliday(id) {
-  const [holiday, setHoliday] = useState({});
+function useFetchTeamInfo(teamId) {
+  const [team, setTeam] = useState({});
+  const [teamPlayers, setTeamPlayers] = useState([]);
   const [status, setStatus] = useState("idle");
 
   useEffect(() => {
-    const fetchHoliday = async () => {
+    const fetchTeam = async () => {
       try {
         setStatus("loading");
-        const url = `http://localhost:3000/api/holidays/${id}`;
+        // const url = `https://api.opendota.com/api/teams/${teamId}`;
         const response = await fetch(url);
         if (!response.ok) {
           throw new Error("Network response was not OK");
         }
-
         const data = await response.json();
-        log("load %o", data);
         setStatus("success");
-        setHoliday(data);
+        setTeam(data);
       } catch (error) {
         setStatus("error");
-        log(error);
       }
     };
-    fetchHoliday();
-  }, [id]);
+    fetchTeam();
+  }, [teamId]);
 
-  const isLoading = status === "loading";
-  const isError = status === "error";
+useEffect(() => {
+  const fetchTeamPlayers = async () => {
+    try {
+      setStatus("loading");
+      // const url = `https://api.opendota.com/api/teams/${teamId}/players`;
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error("Network response was not OK");
+      }
+      const data = await response.json();
+      setStatus("success");
+      setTeamPlayers(data);
+    } catch (error) {
+      setStatus("error");
+    }
+  };
+  fetchTeamPlayers();
+}, [teamId]);
 
-  return { holiday, isLoading, isError };
-}
+const isLoading = status === "loading";
+const isError = status === "error";
 
-export default function HolidayInfo() {
+return { team, teamPlayers, isLoading, isError };
+};
 
-  const { id } = useParams();
+export default function TeamInfo() {
 
-  const { holiday, isLoading, isError } = useFetchHoliday(id);
+  const { teamId } = useParams();
+
+  const { team, teamPlayers, isLoading, isError } = useFetchTeamInfo(teamId);
 
   if (isLoading) {
     return <progress />;
@@ -57,7 +75,10 @@ export default function HolidayInfo() {
     </div>
     <div>
         <p>Players</p>
-        {/* Current players */}
+        {teamPlayers.map((player) => (
+          player.is_current_team_member === true ?
+        <Link to={`/players/${player.account_id}`}>{player.name}</Link> : <br/>) 
+        )}
     </div>
     </>
   );

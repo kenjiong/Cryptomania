@@ -5,7 +5,7 @@ export default function Header() {
     <>
       <Link to={`/main`}>
         <span>
-          <OneDota src="https://i.imgur.com/BKOAfG2.png" />OneDota
+          <img src="https://i.imgur.com/BKOAfG2.png" />OneDota
         </span>
       </Link>
     </>

@@ -1,9 +1,9 @@
 import AllTeams from "../../components/Teams/AllTeams";
 
-export default function TeamsListPage() {
+export default function TeamsListPage({ teams }) {
   return (
     <div>
-      <AllTeams />
+      <AllTeams teams={teams} />
     </div>
   );
 }
