@@ -1,4 +1,4 @@
-import TeamInfo from "../../components/Teams/TeamInfo";
+import TeamInfo from "../../components/Coins/CoinInfo";
 
 export default function TeamPage() {
     return (

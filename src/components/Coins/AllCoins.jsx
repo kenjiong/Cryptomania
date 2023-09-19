@@ -1,9 +1,9 @@
-import TeamCard from "./TeamCards";
+import CoinItem from "./CoinItem";
 
-export default function AllTeams({ teams }) {
+export default function AllCoins({ coins }) {
   return (
     <>
-      {teams.map((team) => (
+      {coins.map((coin) => (
         <div key={team.team_id}>
           <TeamCard team={team} />
         </div>

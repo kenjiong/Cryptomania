@@ -1,3 +1,3 @@
-# OneDota
+# Cryptomania
 
-The one-stop web app for all Dota stats.
+Get all cryptocurrency for a steal!
