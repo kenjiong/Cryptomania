@@ -1,9 +1,9 @@
-import TeamInfo from "../../components/Coins/CoinInfo";
+import CoinInfo from "../../components/Coins/CoinInfo";
 
-export default function TeamPage() {
+export default function CoinPage({fiat}) {
     return (
       <div>
-        <TeamInfo />
+        <CoinInfo fiat={fiat} />
       </div>
     );
   }

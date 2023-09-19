@@ -1,9 +1,9 @@
-import AllTeams from "../../components/Coins/AllCoins";
+import AllCoins from "../../components/Coins/AllCoins";
 
-export default function TeamsListPage({ teams }) {
+export default function CoinsListPage({ coins, fiat }) {
   return (
     <div>
-      <AllTeams teams={teams} />
+      <AllCoins coins={coins} fiat={fiat} />
     </div>
   );
 }

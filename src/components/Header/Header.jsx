@@ -4,9 +4,8 @@ export default function Header() {
   return (
     <>
       <Link to={`/main`}>
-        <span>
-          <img src="https://i.imgur.com/BKOAfG2.png" />OneDota
-        </span>
+        <h1>Cryptomania</h1>
+        Get cryptocurrency at a steal!
       </Link>
     </>
   );

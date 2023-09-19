@@ -25,12 +25,12 @@ function App() {
           throw new Error("Network response was not OK");
         }
         const data = await response.json();
-        setTeams(data);
+        setCoins(data.coins);
       } catch (error) {
         console.log(error);
       }
     };
-    fetchTeams();
+    fetchCoins();
   }, [fiat]);
 
   const changeFiat = newFiat => {setFiat(newFiat)};
@@ -48,8 +48,8 @@ function App() {
         <div>
           <Routes>
             <Route path="/main" element={<HomePage />} />
-            <Route path="/coins" element={<TeamsListPage coins={coins} />} />
-            <Route path="/coins/:coinId" element={<TeamPage />} />
+            <Route path="/coins" element={<CoinsListPage coins={coins} fiat={fiat} />} />
+            <Route path="/coins/:coinId" element={<CoinPage fiat={fiat} />} />
             <Route path="/converter" element={<ConverterPage />} />
           </Routes>
         </div>
@@ -62,6 +62,7 @@ function App() {
           <Portfolio />
         </div>
       </aside>
+      <hr />
       <footer>
         <p>
           Cryptomania (est 2023) - powered by the CoinStats API

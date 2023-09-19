@@ -1,60 +1,59 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
-function useFetchTeamInfo(teamId) {
-  const [team, setTeam] = useState({});
-  const [teamPlayers, setTeamPlayers] = useState([]);
+function useFetchCoinInfo(coinId, fiat) {
+  const [coin, setCoin] = useState({});
+  const [markets, setMarkets] = useState([]);
   const [status, setStatus] = useState("idle");
 
   useEffect(() => {
-    const fetchTeam = async () => {
+    const fetchCoin = async () => {
       try {
         setStatus("loading");
-        // const url = `https://api.opendota.com/api/teams/${teamId}`;
+        const url = `https://api.coinstats.app/public/v1/coins/${coinId}?currency=${fiat}`;
         const response = await fetch(url);
         if (!response.ok) {
           throw new Error("Network response was not OK");
         }
         const data = await response.json();
         setStatus("success");
-        setTeam(data);
+        setCoin(data.coin);
       } catch (error) {
         setStatus("error");
       }
     };
-    fetchTeam();
-  }, [teamId]);
+    fetchCoin();
+  }, [coinId]);
 
-useEffect(() => {
-  const fetchTeamPlayers = async () => {
-    try {
-      setStatus("loading");
-      // const url = `https://api.opendota.com/api/teams/${teamId}/players`;
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error("Network response was not OK");
+  useEffect(() => {
+    const fetchMarkets = async () => {
+      try {
+        setStatus("loading");
+        const url = `https://api.coinstats.app/public/v1/markets?coinId=${coinId}`;
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error("Network response was not OK");
+        }
+        const data = await response.json();
+        setStatus("success");
+        setMarkets(data);
+      } catch (error) {
+        setStatus("error");
       }
-      const data = await response.json();
-      setStatus("success");
-      setTeamPlayers(data);
-    } catch (error) {
-      setStatus("error");
-    }
-  };
-  fetchTeamPlayers();
-}, [teamId]);
+    };
+    fetchMarkets();
+  }, [coinId]);
 
-const isLoading = status === "loading";
-const isError = status === "error";
+  const isLoading = status === "loading";
+  const isError = status === "error";
 
-return { team, teamPlayers, isLoading, isError };
-};
+  return { coin, markets, isLoading, isError };
+}
 
-export default function TeamInfo() {
+export default function CoinInfo({ fiat }) {
+  const { coinId } = useParams();
 
-  const { teamId } = useParams();
-
-  const { team, teamPlayers, isLoading, isError } = useFetchTeamInfo(teamId);
+  const { coin, markets, isLoading, isError } = useFetchCoinInfo(coinId, fiat);
 
   if (isLoading) {
     return <progress />;
@@ -66,20 +65,31 @@ export default function TeamInfo() {
 
   return (
     <>
-        <div>
-      <p><h3>{team.name}</h3></p>
-      <p><img src={`${team.logo_url}`} alt={`${team.name} Logo`} /></p>
-      <p>Rating: {team.rating}</p>
-        <p>Wins: {team.wins}</p>
-        <p>Losses: {team.losses}</p>
-    </div>
-    <div>
-        <p>Players</p>
-        {teamPlayers.map((player) => (
-          player.is_current_team_member === true ?
-        <Link to={`/players/${player.account_id}`}>{player.name}</Link> : <br/>) 
-        )}
-    </div>
+      <div>
+        <p>
+          <h3>
+            <img src={`${coin.icon}`} /> {coin.name} ({coin.symbol})
+          </h3>
+        </p>
+        <p>
+          Price ({fiat}): {coin.price}
+        </p>
+        <p>Price Change (1h): {coin.priceChange1h}</p>
+        <p>Price Change (1d): {coin.priceChange1d}</p>
+        <p>Price Change (1w): {coin.priceChange1w}</p>
+        <p>Volume: {coin.volume}</p>
+      </div>
+      <div>
+        <p>Markets</p>
+        {markets.map((market) => (
+          <div key={market.pair}>
+            <p>Pair: {market.pair}</p>
+            <p>Price: {market.price.toFixed(2)}</p>
+            <p>Exchange: {market.exchange}</p>
+            <p>Volume: {market.volume.toFixed()}</p>
+          </div>
+        ))}
+      </div>
     </>
   );
 }

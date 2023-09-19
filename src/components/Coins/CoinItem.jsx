@@ -1,16 +1,17 @@
 import { Link } from "react-router-dom";
 
-export default function TeamCard({ team }) {
+export default function CoinItem({ coin }) {
   return (
-    <>
-      <div>
-        <p>
-          <img src={`${team.logo_url}`} alt={`${team.name} logo`} />
-        </p>
-        <p>
-          <Link to={`/teams/${team.team_id}`}>{team.name}</Link>
-        </p>
-      </div>
-    </>
+    <tr>
+      <td>{coin.rank}</td>
+      <td>
+        <Link to={`/coins/${coin.id}`}>
+          <img src={`${coin.icon}`} /> {coin.name} ({coin.symbol})
+        </Link>
+      </td>
+      <td>{coin.price.toFixed(2)}</td>
+      <td>{coin.priceChange1h}</td>
+      <td>{coin.volume.toFixed()}</td>
+    </tr>
   );
 }
