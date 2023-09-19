@@ -74,9 +74,9 @@ export default function CoinInfo({ fiat }) {
         <p>
           Price ({fiat}): {coin.price}
         </p>
-        <p>Price Change (1h): {coin.priceChange1h}</p>
-        <p>Price Change (1d): {coin.priceChange1d}</p>
-        <p>Price Change (1w): {coin.priceChange1w}</p>
+        <p>Price Change (1h): {coin.priceChange1h}%</p>
+        <p>Price Change (1d): {coin.priceChange1d}%</p>
+        <p>Price Change (1w): {coin.priceChange1w}%</p>
         <p>Volume: {coin.volume}</p>
       </div>
       <div>

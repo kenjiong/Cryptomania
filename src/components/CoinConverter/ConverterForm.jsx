@@ -6,22 +6,26 @@ const [secondCoin, setSecondCoin] = useState("");
 const [firstCoinValue, setFirstCoinValue] = useState(0);
 const [secondCoinValue, setSecondCoinValue] = useState(0);
 const [convertValue, setConvertValue] = useState(0);
+const [show, setShow] = useState(false);
 
 const handleCoin1Change = (event) => {
-  let index = event.target.value - 1;
+  const index = event.target.value - 1;
   setFirstCoin(coins[index].name);
   setFirstCoinValue(coins[index].price);
+  setShow(false);
 }
 
 const handleCoin2Change = (event) => {
-  let index = event.target.value - 1;
+  const index = event.target.value - 1;
   setSecondCoin(coins[index].name);
   setSecondCoinValue(coins[index].price);
+  setShow(false);
 }
 
 const handleConvert = () => {
 const sum = firstCoinValue / secondCoinValue;
 setConvertValue(sum);
+setShow(true);
 }
 
   return (
@@ -42,7 +46,7 @@ setConvertValue(sum);
 </label>
 <button onClick={() => handleConvert()}>Convert</button>
 <br />
-1 {firstCoin} converts to {convertValue} {secondCoin}
+{show && <p>1 {firstCoin} converts to {convertValue} {secondCoin}</p>}
     </>
   );
 }

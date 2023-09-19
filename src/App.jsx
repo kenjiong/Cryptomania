@@ -4,7 +4,7 @@ import Header from "./components/Header/Header";
 import FiatSelector from "./components/FiatSelector/FiatSelector";
 import NavBar from "./components/Nav/NavBar";
 import Watchlist from "./components/Watchlist/Watchlist";
-import Portfolio from "./components/Portfolio/Portfolio";
+// import Portfolio from "./components/Portfolio/Portfolio";
 import HomePage from "./pages/HomePage";
 import CoinsListPage from "./pages/Coins/CoinsListPage";
 import CoinPage from "./pages/Coins/CoinPage";
@@ -13,7 +13,7 @@ import ConverterPage from "./pages/CoinConverter/ConverterPage";
 function App() {
   const [coins, setCoins] = useState([]);
   const [watchlist, setWatchlist] = useState([]);
-  const [portfolio, setPortfolio] = useState([]);
+  // const [portfolio, setPortfolio] = useState([]);
   const [fiat, setFiat] = useState("USD");
 
   useEffect(() => {
@@ -32,6 +32,33 @@ function App() {
     };
     fetchCoins();
   }, [fiat]);
+
+  useEffect(() => {
+    const fetchWatchlist = async () => {
+      const url = "https://api.airtable.com/v0/apprApIcqcI5oHlTI/Watchlist";
+      const token =
+        "patMCS33ZnaCOmRwz.e6010bc1518019b727914ee0c305944a0e1164e73625a18ef29d64d8d04cbb83";
+      const response = await fetch(`${url}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const jsonData = await response.json();
+      const airtableData = jsonData.records.map((data) => ({
+        ...data.fields,
+        id: data.id,
+      }));
+      setWatchlist(airtableData);
+    };
+    fetchWatchlist();
+  }, []);
+
+  const addWatchlist = (coin) => setWatchlist([...watchlist, coin]);
+
+  const deleteWatchlist = (id) =>
+  setWatchlist(watchlist.filter((coin) => coin.coinId !== id));
 
   const changeFiat = newFiat => {setFiat(newFiat)};
 
@@ -56,11 +83,11 @@ function App() {
       </section>
       <aside>
         <div>
-          <Watchlist watchlist={watchlist} />
+          <Watchlist watchlist={watchlist} addWatchlist={addWatchlist} deleteWatchlist={deleteWatchlist} coins={coins} />
         </div>
-        <div>
+        {/* <div>
           <Portfolio portfolio={portfolio} />
-        </div>
+        </div> */}
       </aside>
       <hr />
       <footer>

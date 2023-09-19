@@ -10,7 +10,7 @@ export default function CoinItem({ coin }) {
         </Link>
       </td>
       <td>{coin.price.toFixed(2)}</td>
-      <td>{coin.priceChange1h}</td>
+      <td>{coin.priceChange1h}%</td>
       <td>{coin.volume.toFixed()}</td>
     </tr>
   );
