@@ -8,7 +8,7 @@ import Portfolio from "./components/Portfolio/Portfolio";
 import HomePage from "./pages/HomePage";
 import CoinsListPage from "./pages/Coins/CoinsListPage";
 import CoinPage from "./pages/Coins/CoinPage";
-import ConverterPage from "./pages/CurrencyConverter/ConverterPage";
+import ConverterPage from "./pages/CoinConverter/ConverterPage";
 
 function App() {
   const [coins, setCoins] = useState([]);
@@ -17,7 +17,7 @@ function App() {
   const [fiat, setFiat] = useState("USD");
 
   useEffect(() => {
-    const fetchCoins = async (fiat) => {
+    const fetchCoins = async () => {
       try {
         const url = `https://api.coinstats.app/public/v1/coins?currency=${fiat}`;
         const response = await fetch(url);
@@ -50,16 +50,16 @@ function App() {
             <Route path="/main" element={<HomePage />} />
             <Route path="/coins" element={<CoinsListPage coins={coins} fiat={fiat} />} />
             <Route path="/coins/:coinId" element={<CoinPage fiat={fiat} />} />
-            <Route path="/converter" element={<ConverterPage />} />
+            <Route path="/converter" element={<ConverterPage coins={coins} />} />
           </Routes>
         </div>
       </section>
       <aside>
         <div>
-          <Watchlist />
+          <Watchlist watchlist={watchlist} />
         </div>
         <div>
-          <Portfolio />
+          <Portfolio portfolio={portfolio} />
         </div>
       </aside>
       <hr />

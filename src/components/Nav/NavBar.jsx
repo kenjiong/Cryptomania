@@ -5,7 +5,7 @@ export default function NavBar() {
     <div>
       <Link to={`/main`}>Home</Link>
       <Link to={`/coins`}>Coins</Link>
-      <Link to={`/converter`}>Currency Converter</Link>
+      <Link to={`/converter`}>Coin Converter</Link>
     </div>
   );
 }

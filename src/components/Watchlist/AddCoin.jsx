@@ -1,5 +1,6 @@
-export const doPostCreateHoliday = async (data) => {
-    const url = "http://localhost:3000/api/holidays/";
+const createWatchlistItem = async (data) => {
+    const url = "https://api.airtable.com/v0/apprApIcqcI5oHlTI/Watchlist";
+    const key = "patMCS33ZnaCOmRwz.e6010bc1518019b727914ee0c305944a0e1164e73625a18ef29d64d8d04cbb83";
     const response = await fetch(url, {
       method: "POST",
       headers: {

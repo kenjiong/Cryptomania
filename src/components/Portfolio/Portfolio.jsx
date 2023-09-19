@@ -1,7 +1,4 @@
-import { useState } from "react";
-import StockCard from "./StockCard";
-
-export default function PortfolioContainer({ portfolio, handleSell }) {
+export default function Portfolio ({ portfolio, handleDelete }) {
   const value = (arr) => {
     let sum = 0;
     for (let i = 0; i < arr.length; i++) {
@@ -13,7 +10,8 @@ export default function PortfolioContainer({ portfolio, handleSell }) {
 
   return (
     <div>
-      <h2>My Portfolio - ${value(portfolio)}</h2>
+      <h3>My Portfolio - ${value(portfolio)}</h3>
+      <p>Profit or Loss</p>
       {portfolio.map((stock) => (
         <StockCard
           key={stock.id}

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 function useFetchCoinInfo(coinId, fiat) {
   const [coin, setCoin] = useState({});
@@ -23,7 +23,7 @@ function useFetchCoinInfo(coinId, fiat) {
       }
     };
     fetchCoin();
-  }, [coinId]);
+  }, [coinId, fiat]);
 
   useEffect(() => {
     const fetchMarkets = async () => {
@@ -42,7 +42,7 @@ function useFetchCoinInfo(coinId, fiat) {
       }
     };
     fetchMarkets();
-  }, [coinId]);
+  }, [coinId, fiat]);
 
   const isLoading = status === "loading";
   const isError = status === "error";
@@ -82,11 +82,11 @@ export default function CoinInfo({ fiat }) {
       <div>
         <p>Markets</p>
         {markets.map((market) => (
-          <div key={market.pair}>
+          <div>
             <p>Pair: {market.pair}</p>
-            <p>Price: {market.price.toFixed(2)}</p>
+            <p>Price: {market.price}</p>
             <p>Exchange: {market.exchange}</p>
-            <p>Volume: {market.volume.toFixed()}</p>
+            <p>Volume: {market.volume}</p>
           </div>
         ))}
       </div>
