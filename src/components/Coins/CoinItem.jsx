@@ -6,7 +6,7 @@ export default function CoinItem({ coin }) {
       <td>{coin.rank}</td>
       <td>
         <Link to={`/coins/${coin.id}`}>
-          <img src={`${coin.icon}`} /> {coin.name} ({coin.symbol})
+          <img className="icon" src={`${coin.icon}`} /> {coin.name} ({coin.symbol})
         </Link>
       </td>
       <td>{coin.price.toFixed(2)}</td>

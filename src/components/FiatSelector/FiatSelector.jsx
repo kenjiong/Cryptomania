@@ -6,18 +6,18 @@ export default function FiatSelector({ changeFiat }) {
   return (
     <>
       <select onChange={handleFiatChange}>
-        <option value="USD">USD</option>
-        <option value="EUR">EUR</option>
-        <option value="GBP">GBP</option>
-        <option value="SGD">SGD</option>
-        <option value="AUD">AUD</option>
-        <option value="HKD">HKD</option>
-        <option value="JPY">JPY</option>
-        <option value="CNY">CNY</option>
-        <option value="CAD">CAD</option>
-        <option value="MYR">MYR</option>
-        <option value="THB">THB</option>
-        <option value="IDR">IDR</option>
+        <option className="dropdown-item" value="USD">USD</option>
+        <option className="dropdown-item" value="EUR">EUR</option>
+        <option className="dropdown-item"value="GBP">GBP</option>
+        <option className="dropdown-item" value="SGD">SGD</option>
+        <option className="dropdown-item" value="AUD">AUD</option>
+        <option className="dropdown-item" value="HKD">HKD</option>
+        <option className="dropdown-item" value="JPY">JPY</option>
+        <option className="dropdown-item" value="CNY">CNY</option>
+        <option className="dropdown-item" value="CAD">CAD</option>
+        <option className="dropdown-item" value="MYR">MYR</option>
+        <option className="dropdown-item" value="THB">THB</option>
+        <option className="dropdown-item" value="IDR">IDR</option>
       </select>
     </>
   );

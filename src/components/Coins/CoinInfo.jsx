@@ -68,7 +68,7 @@ export default function CoinInfo({ fiat }) {
       <div>
         <p>
           <h3>
-            <img src={`${coin.icon}`} /> {coin.name} ({coin.symbol})
+            <img className="logo" src={`${coin.icon}`} /> {coin.name} ({coin.symbol})
           </h3>
         </p>
         <p>

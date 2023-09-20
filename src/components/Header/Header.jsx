@@ -5,12 +5,12 @@ export default function Header() {
   return (
     <>
       <Link to={`/main`}>
+      <img className="logo" src={logo} />
+      </Link>
         <h1>
-          <img src={logo} />
           Cryptomania
         </h1>
         Get cryptocurrency at a steal!
-      </Link>
     </>
   );
 }

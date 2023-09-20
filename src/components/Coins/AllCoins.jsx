@@ -2,7 +2,7 @@ import CoinItem from "./CoinItem";
 
 export default function AllCoins({ coins, fiat }) {
   return (
-      <table>
+      <table className="table">
         <tr>
           <th>Rank</th>
           <th>Coin</th>

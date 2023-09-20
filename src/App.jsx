@@ -65,16 +65,18 @@ function App() {
   };
 
   return (
-    <div className="container text-center">
-      <header className="header">
+    <>
+    <div className="grid">
+      <header className="p-2 g-col-12">
         <Header />
-        <FiatSelector fiat={fiat} changeFiat={changeFiat} />
       </header>
-      <nav className="nav navbar navbar-expand-lg bg-body-tertiary">
-        <NavBar />
+      <nav className="p-2 g-col-12 navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+        <NavBar fiat={fiat} changeFiat={changeFiat} />
       </nav>
-      <section className="section text-light">
-        <div>
+      </div>
+      <div className="container">
+        <div className="row">
+      <section className="col-9 text-light">
           <Routes>
             <Route path="/main" element={<HomePage />} />
             <Route
@@ -87,32 +89,31 @@ function App() {
               element={<ConverterPage coins={coins} />}
             />
           </Routes>
-        </div>
       </section>
-      <aside className="aside">
-        <div>
+      <aside className="col-3">
           <Watchlist
             watchlist={watchlist}
             addWatchlist={addWatchlist}
             deleteWatchlist={deleteWatchlist}
             coins={coins}
           />
-        </div>
         {/* <div>
           <Portfolio portfolio={portfolio} />
         </div> */}
       </aside>
-      <hr />
-      <footer>
-        <p>
+      </div>
+      </div>
+      <hr className="text-white text-opacity-75"/>
+      <footer className="text-center text-white text-opacity-50">
+        <small>
           Cryptomania (est 2023) - powered by the{" "}
           <a href="https://documenter.getpostman.com/view/5734027/RzZ6Hzr3">
             CoinStats API
           </a>
           <br />A project by <a href="https://github.com/kenjiong">Kenji Ong</a>
-        </p>
+        </small>
       </footer>
-    </div>
+    </>
   );
 }
 
