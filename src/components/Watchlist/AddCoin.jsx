@@ -1,31 +1,21 @@
 import { useState } from "react";
-import Select from "react-select";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 
 export default function AddCoin({ addWatchlist, coins }) {
   const [selectedCoin, setSelectedCoin] = useState(1);
-  const [name, setName] = useState("");
-  const [coinId, setCoinId] = useState("");
-  const [symbol, setSymbol] = useState("");
-  const [price, setPrice] = useState("");
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const handleAddCoin = async () => {
     const index = selectedCoin - 1;
-    setName(coins[index].name);
-    setCoinId(coins[index].id);
-    setSymbol(coins[index].symbol);
-    setPrice(coins[index].price);
-
     const data = {
       "fields": {
-        "name": `${name}`,
-        "coinId": `${coinId}`,
-        "symbol": `${symbol}`,
-        "price": `${price}`
+        "name": `${coins[index]?.name}`,
+        "coinId": `${coins[index]?.id}`,
+        "symbol": `${coins[index]?.symbol}`,
+        "price": `${coins[index].price}`
       }
     };
     const url = "https://api.airtable.com/v0/apprApIcqcI5oHlTI/Watchlist";

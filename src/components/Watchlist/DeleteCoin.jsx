@@ -17,7 +17,7 @@ export default function DeleteCoin({ deleteWatchlist, id, coinId }) {
       },
     });
     await response.json();
-    deleteWatchlist(coinId);
+    deleteWatchlist(id);
   };
   return <button onClick={handleDelete}>-</button>;
 }

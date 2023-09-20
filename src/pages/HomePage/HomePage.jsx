@@ -6,7 +6,7 @@ const [news, setNews] = useState([]);
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const url = `https://api.coinstats.app/public/v1/news/handpicked?skip=0&limit=5`;
+        const url = `https://api.coinstats.app/public/v1/news/latest?skip=0&limit=5`;
         const response = await fetch(url);
         if (!response.ok) {
           throw new Error("Network response was not OK");

@@ -5,7 +5,7 @@ import FiatSelector from "./components/FiatSelector/FiatSelector";
 import NavBar from "./components/Nav/NavBar";
 import Watchlist from "./components/Watchlist/Watchlist";
 // import Portfolio from "./components/Portfolio/Portfolio";
-import HomePage from "./pages/HomePage";
+import HomePage from "./pages/HomePage/HomePage";
 import CoinsListPage from "./pages/Coins/CoinsListPage";
 import CoinPage from "./pages/Coins/CoinPage";
 import ConverterPage from "./pages/CoinConverter/ConverterPage";
@@ -58,32 +58,45 @@ function App() {
   const addWatchlist = (coin) => setWatchlist([...watchlist, coin]);
 
   const deleteWatchlist = (id) =>
-  setWatchlist(watchlist.filter((coin) => coin.coinId !== id));
+    setWatchlist(watchlist.filter((coin) => coin.id !== id));
 
-  const changeFiat = newFiat => {setFiat(newFiat)};
+  const changeFiat = (newFiat) => {
+    setFiat(newFiat);
+  };
 
   return (
-    <>
-      <header>
+    <div className="container text-center">
+      <header className="header">
         <Header />
         <FiatSelector fiat={fiat} changeFiat={changeFiat} />
       </header>
-      <nav>
+      <nav className="nav navbar navbar-expand-lg bg-body-tertiary">
         <NavBar />
       </nav>
-      <section>
+      <section className="section text-light">
         <div>
           <Routes>
             <Route path="/main" element={<HomePage />} />
-            <Route path="/coins" element={<CoinsListPage coins={coins} fiat={fiat} />} />
+            <Route
+              path="/coins"
+              element={<CoinsListPage coins={coins} fiat={fiat} />}
+            />
             <Route path="/coins/:coinId" element={<CoinPage fiat={fiat} />} />
-            <Route path="/converter" element={<ConverterPage coins={coins} />} />
+            <Route
+              path="/converter"
+              element={<ConverterPage coins={coins} />}
+            />
           </Routes>
         </div>
       </section>
-      <aside>
+      <aside className="aside">
         <div>
-          <Watchlist watchlist={watchlist} addWatchlist={addWatchlist} deleteWatchlist={deleteWatchlist} coins={coins} />
+          <Watchlist
+            watchlist={watchlist}
+            addWatchlist={addWatchlist}
+            deleteWatchlist={deleteWatchlist}
+            coins={coins}
+          />
         </div>
         {/* <div>
           <Portfolio portfolio={portfolio} />
@@ -92,11 +105,14 @@ function App() {
       <hr />
       <footer>
         <p>
-          Cryptomania (est 2023) - powered by the CoinStats API
+          Cryptomania (est 2023) - powered by the{" "}
+          <a href="https://documenter.getpostman.com/view/5734027/RzZ6Hzr3">
+            CoinStats API
+          </a>
           <br />A project by <a href="https://github.com/kenjiong">Kenji Ong</a>
         </p>
       </footer>
-    </>
+    </div>
   );
 }
 
