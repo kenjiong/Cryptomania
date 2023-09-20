@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 
 export default function AddCoin({ addWatchlist, coins }) {
+  const [selectedCoin, setSelectedCoin] = useState(1);
   const [name, setName] = useState("");
   const [coinId, setCoinId] = useState("");
   const [symbol, setSymbol] = useState("");
@@ -12,15 +13,13 @@ export default function AddCoin({ addWatchlist, coins }) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const handleCoinChoice = (event) => {
-    const index = event.target.value - 1;
+  const handleAddCoin = async () => {
+    const index = selectedCoin - 1;
     setName(coins[index].name);
     setCoinId(coins[index].id);
     setSymbol(coins[index].symbol);
     setPrice(coins[index].price);
-  };
 
-  const handleAddCoin = async () => {
     const data = {
       "fields": {
         "name": `${name}`,
@@ -57,7 +56,7 @@ export default function AddCoin({ addWatchlist, coins }) {
           <fieldset>
             <label>
               Add to Watchlist
-              <select onChange={handleCoinChoice}>
+              <select value={selectedCoin} onChange={event => setSelectedCoin(event.target.value)}>
                 {coins.map((coin) => (
                   <option key={coin.id} value={coin.rank}>
                     {coin.symbol}

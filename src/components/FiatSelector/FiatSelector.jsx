@@ -6,7 +6,7 @@ export default function FiatSelector({ changeFiat }) {
   return (
     <>
       <select onChange={handleFiatChange}>
-        <option value="USD" selected="selected">USD</option>
+        <option value="USD">USD</option>
         <option value="EUR">EUR</option>
         <option value="GBP">GBP</option>
         <option value="SGD">SGD</option>
