@@ -15,10 +15,11 @@ export default function AddCoin({ watchlist, fetchWatchlist, coins }) {
       },
     };
 
-    for (let i=0; i<watchlist.length; i++) {
+    for (let i = 0; i < watchlist.length; i++) {
       if (watchlist[i].fields.coinId === data.fields.coinId) {
         return;
-      }}
+      }
+    }
     try {
       setStatus("loading");
       const url = "https://api.airtable.com/v0/apprApIcqcI5oHlTI/Watchlist";
@@ -38,8 +39,7 @@ export default function AddCoin({ watchlist, fetchWatchlist, coins }) {
     } catch (error) {
       setStatus("error");
     }
-}
-
+  };
 
   const isLoading = status === "loading";
   const isError = status === "error";

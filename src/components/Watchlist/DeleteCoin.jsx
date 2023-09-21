@@ -4,8 +4,10 @@ export default function DeleteCoin({ fetchWatchlist, id }) {
   const [status, setStatus] = useState("idle");
 
   const handleDelete = async () => {
-    const decision = window.confirm("Are you sure you want to remove this coin from your watchlist?");
-  
+    const decision = window.confirm(
+      "Are you sure you want to remove this coin from your watchlist?"
+    );
+
     if (!decision) {
       return;
     }
