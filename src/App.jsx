@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import Header from "./components/Header/Header";
-import FiatSelector from "./components/FiatSelector/FiatSelector";
 import NavBar from "./components/Nav/NavBar";
 import Watchlist from "./components/Watchlist/Watchlist";
 // import Portfolio from "./components/Portfolio/Portfolio";
@@ -74,6 +73,7 @@ function App() {
         <NavBar fiat={fiat} changeFiat={changeFiat} />
       </nav>
       </div>
+      <br />
       <div className="container">
         <div className="row">
       <section className="col-9 text-light">
@@ -113,6 +113,7 @@ function App() {
           <br />A project by <a href="https://github.com/kenjiong">Kenji Ong</a>
         </small>
       </footer>
+      <br />
     </>
   );
 }

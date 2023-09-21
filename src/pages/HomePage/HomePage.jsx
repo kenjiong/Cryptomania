@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import newsicon from "../../assets/newsicon.png";
 
 export default function HomePage() {
   const [news, setNews] = useState([]);
@@ -22,11 +23,13 @@ export default function HomePage() {
 
   return (
     <>
+      <h3 className="text-center"><img className="newsicon" src={newsicon} />&nbsp;Latest Crypto News</h3>
+      <br />
       {news.map((newsItem) => (
         <div className="container" key={newsItem.id}>
           <div className="row align-items-center">
             <div className="col-4 text-center">
-              <img className="newsicon" src={`${newsItem.imgURL}`} />
+              <img className="newsimg" src={`${newsItem.imgURL}`} />
             </div>
             <div className="col-8 text-left">
               <a href={`${newsItem.link}`}>

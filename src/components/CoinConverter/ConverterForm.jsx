@@ -22,9 +22,11 @@ export default function ConverterForm({ coins }) {
 
   return (
     <>
+      <div className="row">
+      <div className="col">
       <label>
         Coin 1:
-        <select value={selectFirst} onChange={event => setSelectFirst(event.target.value)}>
+        <select className="form-select" value={selectFirst} onChange={event => setSelectFirst(event.target.value)}>
           {coins.map((coin1) => (
             <option key={coin1.id} value={coin1.rank}>
               {coin1.symbol}
@@ -32,9 +34,11 @@ export default function ConverterForm({ coins }) {
           ))}
         </select>
       </label>
+      </div>
+      <div className="col">
       <label>
         Coin 2:
-        <select value={selectSecond} onChange={event => setSelectSecond(event.target.value)}>
+        <select className="form-select" value={selectSecond} onChange={event => setSelectSecond(event.target.value)}>
           {coins.map((coin2) => (
             <option key={coin2.id} value={coin2.rank}>
               {coin2.symbol}
@@ -42,13 +46,18 @@ export default function ConverterForm({ coins }) {
           ))}
         </select>
       </label>
-      <button onClick={() => handleConvert()}>Convert</button>
+      </div>
+      </div>
+      <button type="button" className="btn btn-primary" onClick={() => handleConvert()}>Convert</button>
       <br />
+      <br />
+      <div className="row">
       {show && (
-        <p>
+        <h4 className="text-warning">
           1 {firstCoin} converts to {convertValue} {secondCoin}
-        </p>
+        </h4>
       )}
+      </div>
     </>
   );
 }
