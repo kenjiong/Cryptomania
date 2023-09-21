@@ -23,40 +23,56 @@ export default function ConverterForm({ coins }) {
   return (
     <>
       <div className="row">
-      <div className="col">
-      <label>
-        Coin 1:
-        <select className="form-select" value={selectFirst} onChange={event => setSelectFirst(event.target.value)}>
-          {coins.map((coin1) => (
-            <option key={coin1.id} value={coin1.rank}>
-              {coin1.symbol}
-            </option>
-          ))}
-        </select>
-      </label>
+        <div className="col">
+          <label className="fs-4 fw-bold">
+            Select 1st Coin:
+            <select
+              className="form-select"
+              value={selectFirst}
+              onChange={(event) => setSelectFirst(event.target.value)}
+            >
+              {coins.map((coin1) => (
+                <option key={coin1.id} value={coin1.rank}>
+                  {coin1.name} ({coin1.symbol})
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+        <div className="col">
+          <label className="fs-4 fw-bold">
+            Select 2nd Coin:
+            <select
+              className="form-select"
+              value={selectSecond}
+              onChange={(event) => setSelectSecond(event.target.value)}
+            >
+              {coins.map((coin2) => (
+                <option key={coin2.id} value={coin2.rank}>
+                  {coin2.name} ({coin2.symbol})
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
       </div>
-      <div className="col">
-      <label>
-        Coin 2:
-        <select className="form-select" value={selectSecond} onChange={event => setSelectSecond(event.target.value)}>
-          {coins.map((coin2) => (
-            <option key={coin2.id} value={coin2.rank}>
-              {coin2.symbol}
-            </option>
-          ))}
-        </select>
-      </label>
-      </div>
-      </div>
-      <button type="button" className="btn btn-primary" onClick={() => handleConvert()}>Convert</button>
+      <button
+        type="button"
+        className="btn btn-primary btn-lg"
+        onClick={() => handleConvert()}
+      >
+        Convert
+      </button>
       <br />
       <br />
       <div className="row">
-      {show && (
-        <h4 className="text-warning">
-          1 {firstCoin} converts to {convertValue} {secondCoin}
-        </h4>
-      )}
+        {show && (
+          <h4 className="text-warning">
+            <span>1 {firstCoin} converts to </span>
+            <span className="text-decoration-underline">{convertValue}</span>
+            <span> {secondCoin} </span>
+          </h4>
+        )}
       </div>
     </>
   );

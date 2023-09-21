@@ -1,38 +1,24 @@
 import { useState } from "react";
-import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
 
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
-
-export default function AddCoin({ addWatchlist, coins }) {
+export default function AddCoin({ fetchWatchlist, coins }) {
   const [selectedCoin, setSelectedCoin] = useState(1);
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [status, setStatus] = useState("idle");
 
   const handleAddCoin = async () => {
     const index = selectedCoin - 1;
     const data = {
-      "fields": {
-        "name": `${coins[index]?.name}`,
-        "coinId": `${coins[index]?.id}`,
-        "symbol": `${coins[index]?.symbol}`,
-        "price": `${coins[index].price}`
-      }
+      fields: {
+        name: `${coins[index]?.name}`,
+        coinId: `${coins[index]?.id}`,
+        symbol: `${coins[index]?.symbol}`,
+        icon: `${coins[index]?.icon}`,
+      },
     };
-    const url = "https://api.airtable.com/v0/apprApIcqcI5oHlTI/Watchlist";
-    const token =
-      "patMCS33ZnaCOmRwz.e6010bc1518019b727914ee0c305944a0e1164e73625a18ef29d64d8d04cbb83";
+    try {
+      setStatus("loading");
+      const url = "https://api.airtable.com/v0/apprApIcqcI5oHlTI/Watchlist";
+      const token =
+        "patMCS33ZnaCOmRwz.e6010bc1518019b727914ee0c305944a0e1164e73625a18ef29d64d8d04cbb83";
       const response = await fetch(`${url}`, {
         method: "POST",
         headers: {
@@ -42,36 +28,88 @@ export default function AddCoin({ addWatchlist, coins }) {
         body: JSON.stringify(data),
       });
       await response.json();
-      addWatchlist(data.fields);
-      handleClose();
-    };
+      setStatus("success");
+      fetchWatchlist();
+    } catch (error) {
+      setStatus("error");
+    }
+  };
+
+  const isLoading = status === "loading";
+  const isError = status === "error";
+
+  if (isLoading) {
+    return <progress />;
+  }
+
+  if (isError) {
+    return <h2>Something went wrong...</h2>;
+  }
 
   return (
     <div>
-      <button onClick={handleOpen}>+</button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+      <button
+        type="button"
+        className="btn btn-success btn-sm"
+        data-bs-toggle="modal"
+        data-bs-target="#addModal"
       >
-        <Box sx={style}>
-          <fieldset>
-            <label>
-              Add to Watchlist
-              <select value={selectedCoin} onChange={event => setSelectedCoin(event.target.value)}>
+        +
+      </button>
+
+      <div
+        className="modal fade"
+        id="addModal"
+        tabindex="-1"
+        aria-labelledby="addModalLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h1 className="modal-title fs-5" id="addModalLabel">
+                Add to Watchlist
+              </h1>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div className="modal-body">
+              <select
+                className="form-select"
+                value={selectedCoin}
+                onChange={(event) => setSelectedCoin(event.target.value)}
+              >
                 {coins.map((coin) => (
                   <option key={coin.id} value={coin.rank}>
-                    {coin.symbol}
+                    {coin.name} ({coin.symbol})
                   </option>
                 ))}
               </select>
-              <br />
-              <button onClick={handleAddCoin}>Add</button>
-            </label>
-          </fieldset>
-        </Box>
-      </Modal>
+            </div>
+            <div className="modal-footer">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                className="btn btn-success"
+                onClick={handleAddCoin}
+                data-bs-dismiss="modal"
+              >
+                Add
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

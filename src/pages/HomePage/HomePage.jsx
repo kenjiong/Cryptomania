@@ -23,7 +23,10 @@ export default function HomePage() {
 
   return (
     <>
-      <h3 className="text-center"><img className="newsicon" src={newsicon} />&nbsp;Latest Crypto News</h3>
+      <h3 className="text-center">
+        <img className="newsicon" src={newsicon} />
+        &nbsp;Latest Crypto News
+      </h3>
       <br />
       {news.map((newsItem) => (
         <div className="container" key={newsItem.id}>
@@ -32,7 +35,10 @@ export default function HomePage() {
               <img className="newsimg" src={`${newsItem.imgURL}`} />
             </div>
             <div className="col-8 text-left">
-              <a href={`${newsItem.link}`}>
+              <a
+                href={`${newsItem.link}`}
+                className="link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+              >
                 <h4>{newsItem.title}</h4>
               </a>
               <p dangerouslySetInnerHTML={{ __html: newsItem.description }}></p>

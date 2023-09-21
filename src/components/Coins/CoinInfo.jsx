@@ -68,27 +68,33 @@ export default function CoinInfo({ fiat }) {
       <div>
         <p>
           <h3>
-            <img className="logo" src={`${coin.icon}`} /> {coin.name} ({coin.symbol})
+            <img className="logo" src={`${coin.icon}`} /> {coin.name} (
+            {coin.symbol})
           </h3>
         </p>
-        <p>
-          Price ({fiat}): {coin.price}
-        </p>
-        <p>Price Change (1h): {coin.priceChange1h}%</p>
-        <p>Price Change (1d): {coin.priceChange1d}%</p>
-        <p>Price Change (1w): {coin.priceChange1w}%</p>
-        <p>Volume: {coin.volume}</p>
+        <div className="fs-5">
+          <p>
+            Price ({fiat}): {coin.price}
+          </p>
+          <p>Price Change (1h): {coin.priceChange1h}%</p>
+          <p>Price Change (1d): {coin.priceChange1d}%</p>
+          <p>Price Change (1w): {coin.priceChange1w}%</p>
+          <p>Volume: {coin.volume}</p>
+        </div>
       </div>
-      <div>
-        <p>Markets</p>
-        {markets.map((market) => (
-          <div>
-            <p>Pair: {market.pair}</p>
-            <p>Price: {market.price}</p>
-            <p>Exchange: {market.exchange}</p>
-            <p>Volume: {market.volume}</p>
-          </div>
-        ))}
+      <br />
+      <h3 className="text-info">Markets Info</h3>
+      <div className="container">
+        <div className="row row-cols-4">
+          {markets.map((market) => (
+            <div className="col border border-secondary">
+              <p>Pair: {market.pair}</p>
+              <p>Price: {market.price}</p>
+              <p>Exchange: {market.exchange}</p>
+              <p>Volume: {market.volume}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );
