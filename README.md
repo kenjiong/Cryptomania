@@ -76,10 +76,10 @@ I would like to thank Simon and Joanna for their advice and guidance throughout 
 This is my first project using React after learning React for the first time just 2 weeks prior to starting the building of the website. I also had a shorter timeline to create a working app as I decided to use a different API and create a totally new app from what I initially had started on. Nonetheless, React turned out to be the more straightforward part - CSS was the real beast waiting to be conquered. It really took a lot more effort than what I thought was required to make the website look like an everyday app.
 
 ### API and Icons
-[CoinStats API](https://documenter.getpostman.com/view/5734027/RzZ6Hzr3)
-[Cryptocurrency icons created by GOWI - Flaticon](https://www.flaticon.com/free-icons/cryptocurrency)
-[News Icon created by dickpra - Flaticon](https://www.flaticon.com/free-icons/news)
-[Eye Icon created by Vectors Market - Flaticon](https://www.flaticon.com/free-icons/eye)
+[CoinStats API](https://documenter.getpostman.com/view/5734027/RzZ6Hzr3)  
+[Cryptocurrency icons created by GOWI - Flaticon](https://www.flaticon.com/free-icons/cryptocurrency)  
+[News Icon created by dickpra - Flaticon](https://www.flaticon.com/free-icons/news)  
+[Eye Icon created by Vectors Market - Flaticon](https://www.flaticon.com/free-icons/eye)  
 
 [Bootstrap Docs](https://getbootstrap.com/docs/5.3/getting-started/introduction/)  
 [Table Colours in Bootstrap](https://smartdevpreneur.com/the-ultimate-guide-to-bootstrap-table-color-5-examples/#Add_Custom_Bootstrap_Table_Background_Color)
