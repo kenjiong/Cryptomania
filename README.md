@@ -36,24 +36,28 @@ The app allows the user to have an overview of 100 cryptocurrencies and to gain 
 ## Screenshots
 
 ### Main Page
+![Main Page](https://github.com/kenjiong/Cryptomania/assets/129886906/6fbae484-dd8c-4ad0-a848-1df1b7e1f565)
 
 ### Coins Page
+![Coins Page](https://github.com/kenjiong/Cryptomania/assets/129886906/01d99b7f-beaa-41c0-af85-304c70e48545)
 
 ### Coin Info Page
+![Coin Info Page](https://github.com/kenjiong/Cryptomania/assets/129886906/0801b664-b60f-462c-9da3-0fcb0136fd28)
 
 ### Coin Converter Page
+![Coin Converter Page](https://github.com/kenjiong/Cryptomania/assets/129886906/88ba653a-cdd4-4513-a49f-ff6e0848de33)
 
 ## Planning
 
 ### Initial Wireframe
-![Cryptomania](https://github.com/kenjiong/ban-luck/assets/129886906/10994a6d-5898-4f68-a577-a46cc43f8d9a)
+![Initial Wireframe](https://github.com/kenjiong/Cryptomania/assets/129886906/6eb53ade-7c67-4869-8a5a-8a02085b9e0b)
 
 ### Trello Board - User Stories
 
 The Trello Board for Cryptomania can be accessed at:
 https://trello.com/b/iQptbsAM/cryptomania
 
-
+![Trello Board](https://github.com/kenjiong/Cryptomania/assets/129886906/ebfa439a-fce6-4cb7-a8a0-ddc2efd4fc47)
 
 ## Deployment
 The website is deployed on Vercel, and you can visit Cryptomania here:
