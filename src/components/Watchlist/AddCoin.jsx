@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function AddCoin({ fetchWatchlist, coins }) {
+export default function AddCoin({ watchlist, fetchWatchlist, coins }) {
   const [selectedCoin, setSelectedCoin] = useState(1);
   const [status, setStatus] = useState("idle");
 
@@ -8,12 +8,17 @@ export default function AddCoin({ fetchWatchlist, coins }) {
     const index = selectedCoin - 1;
     const data = {
       fields: {
-        name: `${coins[index]?.name}`,
         coinId: `${coins[index]?.id}`,
+        name: `${coins[index]?.name}`,
         symbol: `${coins[index]?.symbol}`,
         icon: `${coins[index]?.icon}`,
       },
     };
+
+    for (let i=0; i<watchlist.length; i++) {
+      if (watchlist[i].fields.coinId === data.fields.coinId) {
+        return;
+      }}
     try {
       setStatus("loading");
       const url = "https://api.airtable.com/v0/apprApIcqcI5oHlTI/Watchlist";
@@ -33,7 +38,8 @@ export default function AddCoin({ fetchWatchlist, coins }) {
     } catch (error) {
       setStatus("error");
     }
-  };
+}
+
 
   const isLoading = status === "loading";
   const isError = status === "error";

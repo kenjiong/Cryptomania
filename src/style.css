@@ -23,6 +23,11 @@ body {
   height: 90px;
 }
 
+.table-dark {
+  --bs-table-bg: #485563;
+  --bs-table-striped-bg: #29323c;
+}
+
 @media (max-width: 1000px) {
   .newsimg {
     max-width: 100%;

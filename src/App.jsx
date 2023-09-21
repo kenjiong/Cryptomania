@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Header from "./components/Header/Header";
 import NavBar from "./components/Nav/NavBar";
 import Watchlist from "./components/Watchlist/Watchlist";
 // import Portfolio from "./components/Portfolio/Portfolio";
-import Enter from "./pages/Enter/Enter";
 import HomePage from "./pages/HomePage/HomePage";
 import CoinsListPage from "./pages/Coins/CoinsListPage";
 import CoinPage from "./pages/Coins/CoinPage";
@@ -15,6 +14,7 @@ function App() {
   const [watchlist, setWatchlist] = useState([]);
   // const [portfolio, setPortfolio] = useState([]);
   const [fiat, setFiat] = useState("USD");
+  const navigate = useNavigate();
 
   const fetchWatchlist = async () => {
     try {
@@ -28,12 +28,8 @@ function App() {
           Authorization: `Bearer ${token}`,
         },
       });
-      const jsonData = await response.json();
-      const airtableData = jsonData.records.map((data) => ({
-        ...data.fields,
-        id: data.id,
-      }));
-      setWatchlist(airtableData);
+      const data = await response.json();
+      setWatchlist(data.records);
     } catch (error) {
       log(error);
     }
@@ -60,6 +56,10 @@ function App() {
     fetchWatchlist();
   }, []);
 
+  useEffect(() => {
+    navigate("/main");
+  }, []);
+
   const changeFiat = (newFiat) => {
     setFiat(newFiat);
   };
@@ -82,7 +82,6 @@ function App() {
         <div className="row">
           <section className="col-9 text-light border-end border-secondary">
             <Routes>
-              <Route path="/" element={<Enter />} />
               <Route path="/main" element={<HomePage />} />
               <Route
                 path="/coins"

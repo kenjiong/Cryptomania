@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import newsicon from "../../assets/newsicon.png";
 
 export default function HomePage() {
   const [news, setNews] = useState([]);
@@ -24,7 +23,7 @@ export default function HomePage() {
   return (
     <>
       <h3 className="text-center">
-        <img className="newsicon" src={newsicon} />
+        <img className="newsicon" src="/newsicon.png" />
         &nbsp;Trending Crypto News
       </h3>
       <br />
