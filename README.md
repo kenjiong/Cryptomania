@@ -19,7 +19,7 @@
 ## Timeframe
 1 week
 
-## Technologies & Tools Used
+## Technologies and Tools Used
 - React 
 - HTML
 - CSS/Bootstrap
@@ -44,15 +44,26 @@ The app allows the user to have an overview of 100 cryptocurrencies and to gain 
 ### Coin Converter Page
 
 ## Planning
+
+### Initial Wireframe
 ![Cryptomania](https://github.com/kenjiong/ban-luck/assets/129886906/10994a6d-5898-4f68-a577-a46cc43f8d9a)
+
+### Trello Board - User Stories
+
+The Trello Board for Cryptomania can be accessed at:
+https://trello.com/b/iQptbsAM/cryptomania
+
+
 
 ## Deployment
 The website is deployed on Vercel, and you can visit Cryptomania here:
-https://kenjiong.github.io/ban-luck/
+https://cryptomania-kenjiong.vercel.app/
 
 ## Future Developments/Improvements
 - Implementing a portfolio function where a user can store their own portfolio and track how it is doing
 - Implementing charts on the coin information page to visualise price trends
+- Links to markets and sorting by trading pair/exchange
+- Colour indicators for price changes
 
 ## Acknowledgements
 I would like to thank Simon and Joanna for their advice and guidance throughout this project. Through this process, I was able to gain a better understanding of working with the various tools that I have learnt.
