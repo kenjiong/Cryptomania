@@ -25,7 +25,7 @@ export default function HomePage() {
     <>
       <h3 className="text-center">
         <img className="newsicon" src={newsicon} />
-        &nbsp;Latest Crypto News
+        &nbsp;Trending Crypto News
       </h3>
       <br />
       {news.map((newsItem) => (

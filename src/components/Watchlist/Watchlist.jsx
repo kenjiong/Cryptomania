@@ -1,12 +1,13 @@
 import AddCoin from "./AddCoin";
 import DeleteCoin from "./DeleteCoin";
 import { Link } from "react-router-dom";
+import eye from "../../assets/watchlist.png";
 
 export default function Watchlist({ watchlist, fetchWatchlist, coins }) {
   return (
     <div>
       <div className="d-inline-flex">
-        <p className="fs-4 fw-bold text-light">My Watchlist</p>&nbsp;&nbsp;
+        <p className="fs-4 fw-bold text-light"><img className="icon" src={eye} />&nbsp;My Watchlist</p>&nbsp;&nbsp;
         <AddCoin fetchWatchlist={fetchWatchlist} coins={coins} />
       </div>
       <br />
