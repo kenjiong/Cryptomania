@@ -38,13 +38,20 @@ function App() {
   useEffect(() => {
     const fetchCoins = async () => {
       try {
-        const url = `https://api.coinstats.app/public/v1/coins?currency=${fiat}`;
-        const response = await fetch(url);
+        const url = `https://openapiv1.coinstats.app/coins?limit=100&currency=${fiat}`;
+        const options = {
+          method: "GET",
+          headers: {
+            accept: "application/json",
+            "X-API-KEY": "zS+xwg1S0eBD4554v8Q1G4K+dJiLrbVmGpCLGJR+Lko=",
+          },
+        };
+        const response = await fetch(url, options);
         if (!response.ok) {
           throw new Error("Network response was not OK");
         }
         const data = await response.json();
-        setCoins(data.coins);
+        setCoins(data.result);
       } catch (error) {
         log(error);
       }
@@ -112,7 +119,7 @@ function App() {
           Cryptomania (est 2023) - powered by the{" "}
           <a
             className="link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-            href="https://documenter.getpostman.com/view/5734027/RzZ6Hzr3"
+            href="https://openapi.coinstats.app"
           >
             CoinStats API
           </a>

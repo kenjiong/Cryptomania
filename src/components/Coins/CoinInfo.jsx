@@ -10,14 +10,21 @@ function useFetchCoinInfo(coinId, fiat) {
     const fetchCoin = async () => {
       try {
         setStatus("loading");
-        const url = `https://api.coinstats.app/public/v1/coins/${coinId}?currency=${fiat}`;
-        const response = await fetch(url);
+        const url = `https://openapiv1.coinstats.app/coins/${coinId}?currency=${fiat}`;
+        const options = {
+          method: "GET",
+          headers: {
+            accept: "application/json",
+            "X-API-KEY": "zS+xwg1S0eBD4554v8Q1G4K+dJiLrbVmGpCLGJR+Lko=",
+          },
+        };
+        const response = await fetch(url, options);
         if (!response.ok) {
           throw new Error("Network response was not OK");
         }
         const data = await response.json();
         setStatus("success");
-        setCoin(data.coin);
+        setCoin(data);
       } catch (error) {
         setStatus("error");
       }
@@ -29,14 +36,21 @@ function useFetchCoinInfo(coinId, fiat) {
     const fetchMarkets = async () => {
       try {
         setStatus("loading");
-        const url = `https://api.coinstats.app/public/v1/markets?coinId=${coinId}`;
-        const response = await fetch(url);
+        const url = `https://openapiv1.coinstats.app/tickers/markets?coinId=${coinId}`;
+        const options = {
+          method: "GET",
+          headers: {
+            accept: "application/json",
+            "X-API-KEY": "zS+xwg1S0eBD4554v8Q1G4K+dJiLrbVmGpCLGJR+Lko=",
+          },
+        };
+        const response = await fetch(url, options);
         if (!response.ok) {
           throw new Error("Network response was not OK");
         }
         const data = await response.json();
         setStatus("success");
-        setMarkets(data);
+        setMarkets(data.result);
       } catch (error) {
         setStatus("error");
       }

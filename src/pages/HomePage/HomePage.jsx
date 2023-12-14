@@ -6,13 +6,20 @@ export default function HomePage() {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const url = `https://api.coinstats.app/public/v1/news/trending?skip=0&limit=5`;
-        const response = await fetch(url);
+        const url = `https://openapiv1.coinstats.app/news/type/trending?limit=5`;
+        const options = {
+          method: "GET",
+          headers: {
+            accept: "application/json",
+            "X-API-KEY": "zS+xwg1S0eBD4554v8Q1G4K+dJiLrbVmGpCLGJR+Lko=",
+          },
+        };
+        const response = await fetch(url, options);
         if (!response.ok) {
           throw new Error("Network response was not OK");
         }
         const data = await response.json();
-        setNews(data.news);
+        setNews(data);
       } catch (error) {
         console.log(error);
       }
@@ -31,7 +38,7 @@ export default function HomePage() {
         <div className="container" key={newsItem.id}>
           <div className="row align-items-center">
             <div className="col-4 text-center">
-              <img className="newsimg" src={`${newsItem.imgURL}`} />
+              <img className="newsimg" src={`${newsItem.imgUrl}`} />
             </div>
             <div className="col-8 text-left">
               <a
